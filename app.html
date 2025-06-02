@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication App</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Welcome Screen */
+        .welcome-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+        .logo-circle {
+            width: 120px;
+            height: 120px;
+            background-color: #1976D2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo-icon {
+            color: white;
+            font-size: 60px;
+        }
+        
+        h1 {
+            color: #1976D2;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #1565C0;
+            font-size: 18px;
+            margin-bottom: 60px;
+        }
+        
+        .btn {
+            width: 100%;
+            height: 50px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background-color: #1976D2;
+            color: white;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: white;
+            color: #1976D2;
+            border: 2px solid #1976D2;
+        }
+        
+        /* Form Screens */
+        .app-bar {
+            background-color: #1976D2;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .app-title {
+            font-size: 20px;
+            font-weight: bold;
+            flex: 1;
+        }
+        
+        .form-container {
+            padding: 20px;
+        }
+        
+        .form-title {
+            color: #1976D2;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-label {
+            color: #1565C0;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #1976D2;
+            border-radius: 15px;
+            font-size: 16px;
+            background-color: white;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-width: 2px;
+        }
+        
+        .input-icon {
+            color: #1976D2;
+            margin-right: 10px;
+        }
+        
+        /* Home Screen */
+        .home-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #1976D2;
+            text-align: center;
+        }
+        
+        .success-icon {
+            color: #1976D2;
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Welcome Screen (default view) -->
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="container">
+            <div class="logo-circle">
+                <span class="material-icons logo-icon">mobile_friendly</span>
+            </div>
+            <h1>Bienvenue</h1>
+            <p class="subtitle">dans notre application</p>
+            
+            <button class="btn btn-primary" onclick="showScreen('signup-screen')">
+                Sign Up
+            </button>
+            
+            <button class="btn btn-outline" onclick="showScreen('login-screen')">
+                Login
+            </button>
+        </div>
+    </div>
+    
+    <!-- Sign Up Screen -->
+    <div id="signup-screen" style="display: none;">
+        <div class="app-bar">
+            <div class="app-title">Inscription</div>
+        </div>
+        
+        <div class="form-container">
+            <h2 class="form-title">Créer un compte</h2>
+            
+            <div class="input-group">
+                <label class="input-label">Nom d'utilisateur</label>
+                <div style="display: flex; align-items: center;">
+                    <span class="material-icons input-icon">person</span>
+                    <input type="text" class="input-field" placeholder="Entrez votre nom d'utilisateur">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Email</label>
+                <div style="display: flex; align-items: center;">
+                    <span class="material-icons input-icon">email</span>
+                    <input type="email" class="input-field" placeholder="Entrez votre email">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Mot de passe</label>
+                <div style="display: flex; align-items: center;">
+                    <span class="material-icons input-icon">lock</span>
+                    <input type="password" class="input-field" placeholder="Entrez votre mot de passe">
+                    <span class="material-icons" style="margin-left: -30px; cursor: pointer;">visibility</span>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Confirmer le mot de passe</label>
+                <div style="display: flex; align-items: center;">
+                    <span class="material-icons input-icon">lock_outline</span>
+                    <input type="password" class="input-field" placeholder="Confirmez votre mot de passe">
+                    <span class="material-icons" style="margin-left: -30px; cursor: pointer;">visibility</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" style="margin-top: 40px;" onclick="showScreen('home-screen')">
+                S'inscrire
+            </button>
+        </div>
+    </div>
+    
+    <!-- Login Screen -->
+    <div id="login-screen" style="display: none;">
+        <div class="app-bar">
+            <div class="app-title">Connexion</div>
+        </div>
+        
+        <div class="form-container">
+            <h2 class="form-title">Connexion</h2>
+            
+            <div class="input-group">
+                <label class="input-label">Nom d'utilisateur</label>
+                <div style="display: flex; align-items: center;">
+                    <span class="material-icons input-icon">person</span>
+                    <input type="text" class="input-field" placeholder="Entrez votre nom d'utilisateur">
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Mot de passe</label>
+                <div style="display: flex; align-items: center;">
+                    <span class="material-icons input-icon">lock</span>
+                    <input type="password" class="input-field" placeholder="Entrez votre mot de passe">
+                    <span class="material-icons" style="margin-left: -30px; cursor: pointer;">visibility</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" style="margin-top: 40px;" onclick="showScreen('home-screen')">
+                Se connecter
+            </button>
+        </div>
+    </div>
+    
+    <!-- Home Screen -->
+    <div id="home-screen" style="display: none;">
+        <div class="app-bar">
+            <div class="app-title">Accueil</div>
+            <span class="material-icons" style="cursor: pointer;" onclick="showScreen('welcome-screen')">logout</span>
+        </div>
+        
+        <div class="container" style="height: calc(100vh - 60px); display: flex; align-items: center; justify-content: center;">
+            <div class="home-card">
+                <span class="material-icons success-icon">check_circle</span>
+                <h2 style="color: #1976D2; font-size: 24px;">Bienvenue <span id="username-display">utilisateur</span>,</h2>
+                <p style="color: #1565C0; font-size: 20px;">sur notre application.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple navigation between screens
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('body > div').forEach(div => {
+                div.style.display = 'none';
+            });
+            
+            // Show the selected screen
+            document.getElementById(screenId).style.display = 'block';
+            
+            // If going to home screen, update the username
+            if (screenId === 'home-screen') {
+                const usernameInput = document.querySelector('#login-screen .input-field') || 
+                                     document.querySelector('#signup-screen .input-field');
+                if (usernameInput && usernameInput.value) {
+                    document.getElementById('username-display').textContent = usernameInput.value;
+                }
+            }
+        }
+        
+        // Toggle password visibility
+        document.querySelectorAll('.material-icons').forEach(icon => {
+            if (icon.textContent === 'visibility') {
+                icon.addEventListener('click', function() {
+                    const input = this.parentNode.querySelector('input');
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        this.textContent = 'visibility_off';
+                    } else {
+                        input.type = 'password';
+                        this.textContent = 'visibility';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
